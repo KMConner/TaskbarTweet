@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Threading.Tasks;
+using System.Threading;
 
 namespace Pusher
 {
@@ -6,7 +8,8 @@ namespace Pusher
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            var server = new PipeServer(@"\\.\\pipe\\tweet");
+            server.ReceiveConnectionAsync(CancellationToken.None).Wait();
         }
     }
 }
