@@ -8,6 +8,9 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PipeClient", "PipeClient\PipeClient.vcxproj", "{AB16D77C-BBAA-4C73-AF3F-068C4982B126}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PipeClientConsole", "PipeClientConsole\PipeClientConsole.vcxproj", "{0681EB43-C047-4D27-AE78-9BBAE146E569}"
+	ProjectSection(ProjectDependencies) = postProject
+		{AB16D77C-BBAA-4C73-AF3F-068C4982B126} = {AB16D77C-BBAA-4C73-AF3F-068C4982B126}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
