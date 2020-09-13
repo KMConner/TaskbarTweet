@@ -2,4 +2,4 @@
 
 #include <Windows.h>
 
-BOOL Send(TCHAR* content, TCHAR* pipeName);
+BOOL Send(LPCWSTR content, LPCWSTR pipeName);
