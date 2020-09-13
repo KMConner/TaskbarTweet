@@ -18,17 +18,25 @@ namespace Pusher
 
         public async Task ReceiveConnectionAsync(CancellationToken cancellationToken)
         {
-            using (var pipe = new NamedPipeServerStream(pipeName, PipeDirection.InOut))
+            while (!cancellationToken.IsCancellationRequested)
             {
-                while (!cancellationToken.IsCancellationRequested)
+                using (var pipe = new NamedPipeServerStream(pipeName, PipeDirection.InOut))
                 {
-                    await pipe.WaitForConnectionAsync(cancellationToken);
-                    using (var reader = new StreamReader(pipe, Encoding.Unicode))
-                    using (var writer = new StreamWriter(pipe, Encoding.Unicode))
+                    try
                     {
-                        Console.WriteLine(reader.ReadLine());
-                        writer.Write("OK");
-                        writer.Flush();
+                        await pipe.WaitForConnectionAsync(cancellationToken);
+
+                        using (var reader = new StreamReader(pipe, Encoding.ASCII))
+                        using (var writer = new StreamWriter(pipe, Encoding.ASCII))
+                        {
+                            Console.WriteLine(reader.ReadLine());
+                            writer.Write("OK");
+                            writer.Flush();
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("Error: " + ex.Message);
                     }
                 }
             }
