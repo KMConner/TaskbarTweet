@@ -1,10 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using System.IO;
 using System.IO.Pipes;
-using System.Threading.Tasks;
+using System.Runtime.Serialization.Json;
+using System.Text;
 using System.Threading;
+using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace Pusher
 {
@@ -29,7 +30,10 @@ namespace Pusher
                         using (var reader = new StreamReader(pipe, Encoding.ASCII))
                         using (var writer = new StreamWriter(pipe, Encoding.ASCII))
                         {
-                            Console.WriteLine(reader.ReadLine());
+                            var serializer = new DataContractJsonSerializer(typeof(PipeData));
+                            string pipeString = reader.ReadLine();
+                            PipeData data = JsonConvert.DeserializeObject<PipeData>(pipeString);
+                            Console.WriteLine(data.GetText());
                             writer.Write("OK");
                             writer.Flush();
                         }
