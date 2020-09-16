@@ -1,6 +1,8 @@
 #include "TweetBand.h"
+#include "ClsId.h"
 #include <Uxtheme.h>
 #include <CommCtrl.h>
+#include "PipeClient.h"
 #define ID_BANDWINDOW 100
 #pragma comment (lib, "uxtheme.lib")
 #pragma comment (lib,"comctl32.lib")
@@ -9,12 +11,7 @@
 
 extern void LockModule(BOOL bLock);
 
-// CLSID
-const CLSID CLSID_TWEET_BAND = { 0x879cd4b2, 0xeaca, 0x4dbf,{ 0x99, 0x65, 0x5a, 0x3d, 0x27, 0x44, 0x78, 0x87 } };
-const TCHAR CLSID_TEXT_TWEET_BAND[] = TEXT("{879CD4B2-EACA-4DBF-9965-5A3D27447887}");
-
 HINSTANCE g_hInstDll = NULL;
-
 
 #pragma region IUnknown
 
@@ -367,7 +364,7 @@ LRESULT CALLBACK TweetBand::WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPAR
 		TCHAR text[200];
 		GetWindowText(m_textEdit, text, 200);
 		bool ans;
-		ans = true;
+		ans = Send(text, TEXT("\\\\.\\pipe\\tweet"));
 		if (ans)
 		{
 			SetWindowText(m_textEdit, TEXT(""));

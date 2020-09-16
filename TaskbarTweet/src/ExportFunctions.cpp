@@ -1,7 +1,8 @@
-#include <Windows.h>
-#include "CClassFactory.h"
 #include <ShlObj.h>
 #include <Shlwapi.h>
+#include <Windows.h>
+#include "CClassFactory.h"
+#include "ClsId.h"
 
 #pragma comment (lib, "shlwapi.lib")
 
@@ -10,9 +11,6 @@
 /// </summary>
 ULONG g_lLocks = 0;
 extern HINSTANCE g_hInstDll;
-// CLSID
-const CLSID CLSID_TWEET_BAND = { 0xb4c849ef, 0x85b3, 0x4f55, { 0x96, 0xa7, 0x33, 0xfe, 0xee, 0x54, 0xb0, 0xeb } };
-const TCHAR CLSID_TEXT_TWEET_BAND[] = TEXT("{B4C849EF-85B3-4F55-96A7-33FEEE54B0EB}");
 
 BOOL CreateRegistryKey(HKEY hKeyRoot, LPCWSTR lpszKey, LPCWSTR lpszValue, LPCWSTR lpszData)
 {
