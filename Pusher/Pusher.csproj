@@ -10,4 +10,6 @@
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
   </ItemGroup>
 
+  <ProjectExtensions><VisualStudio><UserProperties settings_1json__JsonSchema="settings-schema.json" /></VisualStudio></ProjectExtensions>
+
 </Project>
