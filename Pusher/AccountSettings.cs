@@ -1,4 +1,7 @@
-﻿using System.Runtime.Serialization;
+﻿using System;
+using System.IO;
+using System.Runtime.Serialization;
+using Newtonsoft.Json;
 
 namespace Pusher
 {
@@ -25,6 +28,20 @@ namespace Pusher
                 return false;
             }
             return true;
+        }
+
+        public static AccountSettings[] LoadSettings(string filePath)
+        {
+            AccountSettings[] settings = JsonConvert.DeserializeObject<AccountSettings[]>(File.ReadAllText(filePath));
+            if (settings.Length != 1)
+            {
+                throw new Exception("The number of accounts must be 1.");
+            }
+            if (!settings[0].Validate())
+            {
+                throw new Exception("The configuration is invalid.");
+            }
+            return settings;
         }
     }
 }

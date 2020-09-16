@@ -12,7 +12,7 @@ namespace Pusher
     class PipeServer
     {
         private string pipeName;
-        public PipeServer(string pipeName)
+        public PipeServer(string pipeName, AccountSettings[] settings)
         {
             this.pipeName = pipeName;
         }
