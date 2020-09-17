@@ -6,15 +6,20 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using CoreTweet;
 
 namespace Pusher
 {
     class PipeServer
     {
-        private string pipeName;
+        private readonly string pipeName;
+
+        private readonly Tokens token;
         public PipeServer(string pipeName, AccountSettings[] settings)
         {
             this.pipeName = pipeName;
+            AccountSettings setting = settings[0];
+            token = Tokens.Create(setting.ConsumerKey, setting.ConsumerKeySecret, setting.AccessToken, setting.AccessTokenSecret);
         }
 
         public async Task ReceiveConnectionAsync(CancellationToken cancellationToken)
@@ -28,14 +33,11 @@ namespace Pusher
                         await pipe.WaitForConnectionAsync(cancellationToken);
 
                         using (var reader = new StreamReader(pipe, Encoding.ASCII))
-                        using (var writer = new StreamWriter(pipe, Encoding.ASCII))
                         {
-                            var serializer = new DataContractJsonSerializer(typeof(PipeData));
                             string pipeString = reader.ReadLine();
+                            Console.WriteLine(pipeString);
                             PipeData data = JsonConvert.DeserializeObject<PipeData>(pipeString);
-                            Console.WriteLine(data.GetText());
-                            writer.Write("OK");
-                            writer.Flush();
+                            await token.Statuses.UpdateAsync(data.GetText(), cancellationToken: cancellationToken);
                         }
                     }
                     catch (Exception ex)
