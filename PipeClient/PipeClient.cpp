@@ -19,7 +19,7 @@ BOOL Send(LPCWSTR content, LPCWSTR pipeName)
 		{"text", sss }
 	};
 
-	string jsonStr = j.dump(-1, ' ', true);
+	string jsonStr = j.dump(-1, ' ', true) + "\r\n";
 	if (hPipe == INVALID_HANDLE_VALUE)
 	{
 		DWORD err = GetLastError();
@@ -29,6 +29,7 @@ BOOL Send(LPCWSTR content, LPCWSTR pipeName)
 	}
 
 	WriteFile(hPipe, jsonStr.c_str(), jsonStr.size(), nullptr, NULL);
+	CloseHandle(hPipe);
 
 	return TRUE;
 }
