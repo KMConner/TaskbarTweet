@@ -8,7 +8,8 @@ namespace Pusher
     {
         static void Main(string[] args)
         {
-            var server = new PipeServer(@"tweet");
+            AccountSettings[] settings = AccountSettings.LoadSettings("settings.json");
+            var server = new PipeServer(@"tweet", settings);
             server.ReceiveConnectionAsync(CancellationToken.None).Wait();
         }
     }

@@ -1,0 +1,30 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema",
+  "title": "Account settings file format for Taskbar Tweet",
+  "type": "array",
+  "maxItems": 1,
+  "minItems": 1,
+  "items": {
+    "type": "object",
+    "required": [
+      "consumer-key",
+      "consumer-key-secret",
+      "access-token",
+      "access-token-secret"
+    ],
+    "properties": {
+      "consumer-key": {
+        "type": "string"
+      },
+      "consumer-key-secret": {
+        "type": "string"
+      },
+      "access-token": {
+        "type": "string"
+      },
+      "access-token-secret": {
+        "type": "string"
+      }
+    }
+  }
+}
