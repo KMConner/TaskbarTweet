@@ -22,11 +22,13 @@
     <None Include="Export.def" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AuthInfo.h" />
     <ClInclude Include="include\CClassFactory.h" />
     <ClInclude Include="include\ClsId.h" />
     <ClInclude Include="include\TweetBand.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AuthInfo.cpp" />
     <ClCompile Include="src\CClassFactory.cpp" />
     <ClCompile Include="src\ExportFunctions.cpp" />
     <ClCompile Include="src\TweetBand.cpp" />
