@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Setup"
         mc:Ignorable="d"
-        Title="MainWindow" Height="200" Width="400">
+        Title="MainWindow" Height="200" Width="400" ResizeMode="NoResize">
     <Grid Margin="5">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
@@ -20,7 +20,7 @@
             <ColumnDefinition Width="auto"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <TextBlock FontSize="17" Grid.Row="0" Grid.ColumnSpan="2" Margin="0 0 0 10">Please enter your twitter credential.</TextBlock>
+        <TextBlock FontSize="17" Grid.Row="0" Grid.ColumnSpan="2" Margin="0 0 0 10">Please enter your twitter credential</TextBlock>
         <TextBlock Grid.Row="1" Margin="0 2 5 2">API Key:</TextBlock>
         <TextBlock Grid.Row="2" Margin="0 2 5 2">API Key secret:</TextBlock>
         <TextBlock Grid.Row="3" Margin="0 2 5 2">Access Token:</TextBlock>
