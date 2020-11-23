@@ -1,4 +1,4 @@
-﻿#include <atlstr.h>
+#include <atlstr.h>
 #include "nlohmann/json.hpp"
 #include "PipeClient.h"
 

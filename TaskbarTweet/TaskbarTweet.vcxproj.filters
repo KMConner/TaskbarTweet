@@ -35,6 +35,9 @@
     <ClInclude Include="include\TestHeader.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
+    <ClInclude Include="include\PipeClient.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\CClassFactory.cpp">
@@ -50,6 +53,9 @@
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="src\TestImpl.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="src\PipeClient.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>

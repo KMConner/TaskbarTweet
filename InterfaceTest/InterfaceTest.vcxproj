@@ -248,9 +248,6 @@
     <ClCompile Include="InterfaceTest.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\PipeClient\PipeClient.vcxproj">
-      <Project>{ab16d77c-bbaa-4c73-af3f-068c4982b126}</Project>
-    </ProjectReference>
     <ProjectReference Include="..\TaskbarTweet\TaskbarTweet.vcxproj">
       <Project>{ccd0e67e-0fdd-4ee5-a207-d33075f8649e}</Project>
     </ProjectReference>
