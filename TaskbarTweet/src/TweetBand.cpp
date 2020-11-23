@@ -313,7 +313,18 @@ BOOL TweetBand::RegisterAndCreateWindow(HWND hwndParent)
 		RegisterClassEx(&wc);
 	}
 
+#ifdef _UI_TEST
+	DESKBANDINFO info;
+	info.dwMask = DBIM_ACTUAL;
+	GetBandInfo(NULL, NULL, &info);
+	int windowWidth = GetSystemMetrics(SM_CXBORDER) + info.ptActual.x;
+	int windowHeight = GetSystemMetrics(SM_CYBORDER) + GetSystemMetrics(SM_CYCAPTION) + info.ptActual.y;
+	m_hwnd = CreateWindowEx(NULL, TWEETBAND_WINDOW_CLASS_NAME, TEXT(""), WS_OVERLAPPEDWINDOW, CW_USEDEFAULT, CW_USEDEFAULT, windowWidth, windowHeight, hwndParent, NULL, g_hInstDll, this);
+
+#else
 	m_hwnd = CreateWindowEx(NULL, TWEETBAND_WINDOW_CLASS_NAME, TEXT(""), WS_CHILD | WS_CLIPSIBLINGS, 0, 0, 0, 0, hwndParent, (HMENU)ID_BANDWINDOW, g_hInstDll, this);
+#endif // _UI_TEST
+
 	SetWindowLongPtr(m_hwnd, GWLP_USERDATA, (LONG_PTR)this);
 
 	// Text box
@@ -361,10 +372,16 @@ LRESULT CALLBACK TweetBand::WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPAR
 		if (wParam != ID_BUTTON)
 			break;
 
+		if (!authInfo.GetIsLoaded() && !authInfo.Load())
+		{
+			MessageBox(m_hwnd, TEXT("Failed to load config file !"), TEXT(""), MB_OK | MB_ICONWARNING);
+			break;
+		}
+
 		TCHAR text[200];
 		GetWindowText(m_textEdit, text, 200);
 		bool ans;
-		ans = Send(text, TEXT("\\\\.\\pipe\\tweet"));
+		ans = Send(text, TEXT("\\\\.\\pipe\\tweet"), authInfo);
 		if (ans)
 		{
 			SetWindowText(m_textEdit, TEXT(""));
@@ -415,6 +432,11 @@ LRESULT CALLBACK TweetBand::TextWndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPA
 			return 0;
 		}
 		break;
+#ifdef _UI_TEST
+	case WM_DESTROY:
+		PostQuitMessage(0);
+		break;
+#endif // _UI_TEST
 	default:
 		break;
 	}

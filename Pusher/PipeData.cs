@@ -11,10 +11,31 @@ namespace Pusher
         [DataMember(Name = "text")]
         public ushort[] Wchars { get; set; }
 
-        public string GetText()
+        [DataMember(Name = "ConsumerKey")]
+        public ushort[] ConsumerKeyChars { get; set; }
+
+        [DataMember(Name = "ConsumerSecret")]
+        public ushort[] ConsumerSecretChars { get; set; }
+
+        [DataMember(Name ="accessToken")]
+        public ushort[] AccessTokenChars { get; set; }
+
+        [DataMember(Name = "accessTokenSecret")]
+        public ushort[] AccessTokenSecretChars { get; set; }
+
+        public string Text => GetText(Wchars);
+
+        public string ConsumerKey => GetText(ConsumerKeyChars);
+
+        public string ConsumerSecret => GetText(ConsumerSecretChars);
+
+        public string AccessToken => GetText(AccessTokenChars);
+
+        public string AccessTokenSecret => GetText(AccessTokenSecretChars);
+
+        private static string GetText(ushort[] chars)
         {
-            ReadOnlySpan<ushort> textSpan = Wchars.AsSpan();
-            var oge = MemoryMarshal.Cast<ushort, byte>(textSpan);
+            ReadOnlySpan<ushort> textSpan = chars.AsSpan();
             return Encoding.Unicode.GetString(MemoryMarshal.Cast<ushort, byte>(textSpan));
         }
     }

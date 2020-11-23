@@ -2,6 +2,7 @@
 #define DLLAPI extern "C" __declspec(dllexport)
 
 #include <ShlObj.h>
+#include "AuthInfo.h"
 
 /// <summary>
 /// Main module of this desk band,
@@ -140,4 +141,6 @@ private:
 	BOOL m_bCompositionEnabled;
 
 	IUnknown* m_pSite;
+
+	AuthInfo authInfo;
 };
