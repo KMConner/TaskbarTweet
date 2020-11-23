@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Windows;
 using System;
+using System.IO;
 using MvvmCross.Commands;
 
 namespace Setup
@@ -23,6 +24,10 @@ namespace Setup
         private IMvxCommand cancelCommand;
 
         private IMvxCommand okCommand;
+
+        private IMvxCommand loadCommand;
+
+        private readonly string iniPath;
 
         public string ApiKey
         {
@@ -78,9 +83,15 @@ namespace Setup
             get => okCommand ??= new MvxCommand(OkCommandExecute, OkCommandCanExecute);
         }
 
+        public IMvxCommand LoadCommand
+        {
+            get => loadCommand ??= new MvxCommand(LoadFromIni);
+        }
+
         public MainWindow()
         {
             InitializeComponent();
+            iniPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), @"TaskbarTweet\auth.ini");
             DataContext = this;
         }
 
@@ -92,6 +103,15 @@ namespace Setup
         private void OkCommandExecute()
         {
             Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+            try
+            {
+                SaveIni();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Failed to save config file: \r\n" + ex.Message);
+                return;
+            }
 
             Close();
         }
@@ -102,9 +122,20 @@ namespace Setup
                 !string.IsNullOrWhiteSpace(AccessToken) && !string.IsNullOrWhiteSpace(AccessTokenSecret);
         }
 
-        private void SaveToIni()
+        private void LoadFromIni()
         {
+            ApiKey = IniFile.Read(iniPath, "ConsumerKey", "account");
+            ApiSecret = IniFile.Read(iniPath, "ConsumerSecret", "account");
+            AccessToken = IniFile.Read(iniPath, "AccessToken", "account");
+            AccessTokenSecret = IniFile.Read(iniPath, "AccessTokenSecret", "account");
+        }
 
+        private void SaveIni()
+        {
+            IniFile.Write(iniPath, "ConsumerKey", ApiKey, "account");
+            IniFile.Write(iniPath, "ConsumerSecret", ApiSecret, "account");
+            IniFile.Write(iniPath, "AccessToken", AccessToken, "account");
+            IniFile.Write(iniPath, "AccessTokenSecret", AccessTokenSecret, "account");
         }
     }
 }
