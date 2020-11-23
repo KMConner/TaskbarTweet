@@ -10,7 +10,9 @@ namespace Pusher
         {
             AccountSettings[] settings = AccountSettings.LoadSettings("settings.json");
             var server = new PipeServer(@"tweet", settings);
-            server.ReceiveConnectionAsync(CancellationToken.None).Wait();
+            var cts = new CancellationTokenSource();
+            Console.CancelKeyPress += (s, e) => cts.Cancel();
+            server.ReceiveConnectionAsync(cts.Token).Wait();
         }
     }
 }
