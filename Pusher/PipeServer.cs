@@ -13,10 +13,9 @@ namespace Pusher
     {
         private readonly string pipeName;
 
-        public PipeServer(string pipeName, AccountSettings[] settings)
+        public PipeServer(string pipeName)
         {
             this.pipeName = pipeName;
-            AccountSettings setting = settings[0];
         }
 
         public async Task ReceiveConnectionAsync(CancellationToken cancellationToken)

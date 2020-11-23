@@ -1,9 +1,0 @@
-// shema: settings-schema.json
-[
-  {
-    "access-token": "",
-    "access-token-secret": "",
-    "consumer-key": "",
-    "consumer-key-secret": ""
-  }
-]
