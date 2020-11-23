@@ -28,19 +28,19 @@ BOOL AuthInfo::Load()
 		return FALSE;
 	}
 
-	if (GetPrivateProfileString(NULL, TEXT("ConsumerKey"), NULL, ConsumerKey, 256, lpIniPath) == 0)
+	if (GetPrivateProfileString(TEXT("account"), TEXT("ConsumerKey"), NULL, ConsumerKey, 256, lpIniPath) == 0)
 	{
 		return FALSE;
 	}
-	if (GetPrivateProfileString(NULL, TEXT("ConsumerSecret"), NULL, ConsumerSecret, 256, lpIniPath) == 0)
+	if (GetPrivateProfileString(TEXT("account"), TEXT("ConsumerSecret"), NULL, ConsumerSecret, 256, lpIniPath) == 0)
 	{
 		return FALSE;
 	}
-	if (GetPrivateProfileString(NULL, TEXT("AccessToken"), NULL, AccessToken, 256, lpIniPath) == 0)
+	if (GetPrivateProfileString(TEXT("account"), TEXT("AccessToken"), NULL, AccessToken, 256, lpIniPath) == 0)
 	{
 		return FALSE;
 	}
-	if (GetPrivateProfileString(NULL, TEXT("AccessTokenSecret"), NULL, AccessTokenSecret, 256, lpIniPath) == 0)
+	if (GetPrivateProfileString(TEXT("account"), TEXT("AccessTokenSecret"), NULL, AccessTokenSecret, 256, lpIniPath) == 0)
 	{
 		return FALSE;
 	}
@@ -49,27 +49,27 @@ BOOL AuthInfo::Load()
 	return TRUE;
 }
 
-LPCTSTR AuthInfo::GetConsumerKey()
+LPCTSTR AuthInfo::GetConsumerKey() const
 {
 	return ConsumerKey;
 }
 
-LPCTSTR AuthInfo::GetConsumerSecret()
+LPCTSTR AuthInfo::GetConsumerSecret() const
 {
 	return ConsumerSecret;
 }
 
-LPCTSTR AuthInfo::GetAccessToken()
+LPCTSTR AuthInfo::GetAccessToken() const
 {
 	return AccessToken;
 }
 
-LPCTSTR AuthInfo::GetAccessTokenSecret()
+LPCTSTR AuthInfo::GetAccessTokenSecret() const
 {
 	return AccessTokenSecret;
 }
 
-BOOL AuthInfo::GetIsLoaded()
+BOOL AuthInfo::GetIsLoaded() const
 {
 	return IsLoaded;
 }

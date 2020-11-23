@@ -8,11 +8,11 @@ public:
 	AuthInfo();
 	~AuthInfo();
 	BOOL Load();
-	LPCTSTR GetConsumerKey();
-	LPCTSTR GetConsumerSecret();
-	LPCTSTR GetAccessToken();
-	LPCTSTR GetAccessTokenSecret();
-	BOOL GetIsLoaded();
+	LPCTSTR GetConsumerKey() const;
+	LPCTSTR GetConsumerSecret() const;
+	LPCTSTR GetAccessToken() const;
+	LPCTSTR GetAccessTokenSecret() const;
+	BOOL GetIsLoaded() const;
 
 private:
 	LPTSTR ConsumerKey;
