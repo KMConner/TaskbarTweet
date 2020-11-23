@@ -26,13 +26,13 @@
         <TextBlock Grid.Row="3" Margin="0 2 5 2">Access Token:</TextBlock>
         <TextBlock Grid.Row="4" Margin="0 2 5 2">Access token secret:</TextBlock>
 
-        <TextBox Grid.Row="1" Grid.Column="1"></TextBox>
-        <TextBox Grid.Row="2" Grid.Column="1"></TextBox>
-        <TextBox Grid.Row="3" Grid.Column="1"></TextBox>
-        <TextBox Grid.Row="4" Grid.Column="1"></TextBox>
+        <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding ApiKey, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+        <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding ApiSecret, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+        <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding AccessToken, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+        <TextBox Grid.Row="4" Grid.Column="1" Text="{Binding AccessTokenSecret, UpdateSourceTrigger=PropertyChanged}"></TextBox>
         <StackPanel Grid.Row="6" Grid.Column="2" Orientation="Horizontal" Width="auto" HorizontalAlignment="Right">
-            <Button Width="50">Cancel</Button>
-            <Button Margin="10 0 0 0" Width="50">OK</Button>
+            <Button Width="50" Command="{Binding CancelCommand}">Cancel</Button>
+            <Button Margin="10 0 0 0" Width="50" Command="{Binding OkCommand}">OK</Button>
         </StackPanel>
     </Grid>
 </Window>
