@@ -432,6 +432,11 @@ LRESULT CALLBACK TweetBand::TextWndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPA
 			return 0;
 		}
 		break;
+#ifdef _UI_TEST
+	case WM_DESTROY:
+		PostQuitMessage(0);
+		break;
+#endif // _UI_TEST
 	default:
 		break;
 	}
