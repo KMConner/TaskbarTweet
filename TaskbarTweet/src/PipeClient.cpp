@@ -5,18 +5,33 @@
 using namespace std;
 using namespace nlohmann;
 
-BOOL Send(LPCWSTR content, LPCWSTR pipeName)
+
+void TextToU16String(LPCTSTR text, u16string& str)
+{
+	auto contentLength = wcslen(text);
+	for (size_t i = 0; i < contentLength; i++)
+	{
+		str.push_back(text[i]);
+	}
+}
+
+BOOL Send(LPCWSTR content, LPCWSTR pipeName, const AuthInfo& authInfo)
 {
 	HANDLE hPipe = CreateFileW(pipeName, GENERIC_READ | GENERIC_WRITE, 0, NULL, OPEN_EXISTING, 0, NULL);
 
-	u16string sss;
-	auto contentLength = wcslen(content);
-	for (size_t i = 0; i < contentLength; i++)
-	{
-		sss.push_back(content[i]);
-	}
+	u16string text, consumerKey, consumerSecret, accessToken, accessTokenSecret;
+	TextToU16String(content, text);
+	TextToU16String(authInfo.GetConsumerKey(), consumerKey);
+	TextToU16String(authInfo.GetConsumerSecret(), consumerSecret);
+	TextToU16String(authInfo.GetAccessToken(), accessToken);
+	TextToU16String(authInfo.GetAccessTokenSecret(), accessTokenSecret);
+
 	json j = {
-		{"text", sss }
+		{ "text", text },
+		{ "consumerKey", consumerKey },
+		{ "consumerSecret", consumerSecret },
+		{ "accessToken", accessToken },
+		{ "accessTokenSecret", accessTokenSecret},
 	};
 
 	string jsonStr = j.dump(-1, ' ', true) + "\r\n";

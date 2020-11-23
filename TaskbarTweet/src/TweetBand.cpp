@@ -381,7 +381,7 @@ LRESULT CALLBACK TweetBand::WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPAR
 		TCHAR text[200];
 		GetWindowText(m_textEdit, text, 200);
 		bool ans;
-		ans = Send(text, TEXT("\\\\.\\pipe\\tweet"));
+		ans = Send(text, TEXT("\\\\.\\pipe\\tweet"), authInfo);
 		if (ans)
 		{
 			SetWindowText(m_textEdit, TEXT(""));
