@@ -43,7 +43,25 @@ BOOL Send(LPCWSTR content, LPCWSTR pipeName, const AuthInfo& authInfo)
 		return FALSE;
 	}
 
-	WriteFile(hPipe, jsonStr.c_str(), jsonStr.size(), nullptr, NULL);
+	if (!WriteFile(hPipe, jsonStr.c_str(), jsonStr.size(), nullptr, NULL))
+	{
+		CloseHandle(hPipe);
+		return FALSE;
+	}
+
+	const DWORD respBufSize = 16;
+	char resp[respBufSize];
+	DWORD length;
+	if (!ReadFile(hPipe, resp, respBufSize, &length, NULL))
+	{
+		CloseHandle(hPipe);
+		return FALSE;
+	}
+	if (length < 1 || resp[0] != '+')
+	{
+		CloseHandle(hPipe);
+		return FALSE;
+	}
 	CloseHandle(hPipe);
 
 	return TRUE;

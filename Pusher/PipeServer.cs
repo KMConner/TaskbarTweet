@@ -29,12 +29,21 @@ namespace Pusher
                         await pipe.WaitForConnectionAsync(cancellationToken);
 
                         using (var reader = new StreamReader(pipe, Encoding.ASCII))
+                        using (var writer = new StreamWriter(pipe, Encoding.ASCII))
                         {
                             string pipeString = reader.ReadLine();
-                            Console.WriteLine(pipeString);
                             PipeData data = JsonConvert.DeserializeObject<PipeData>(pipeString);
                             Tokens token = Tokens.Create(data.ConsumerKey, data.ConsumerSecret, data.AccessToken, data.AccessTokenSecret);
-                            await token.Statuses.UpdateAsync(data.Text, cancellationToken: cancellationToken);
+                            try
+                            {
+                                await token.Statuses.UpdateAsync(data.Text, cancellationToken: cancellationToken);
+                            }
+                            catch
+                            {
+                                await writer.WriteLineAsync("-");
+                                throw;
+                            }
+                            await writer.WriteLineAsync("+");
                         }
                     }
                     catch (Exception ex)
