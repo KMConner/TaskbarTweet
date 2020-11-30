@@ -15,6 +15,18 @@
     {
         "Entry"
         {
+        "MsmKey" = "8:_30E98C5B5184470CBEDA5905847C4370"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_332B1B92112140C59DF79B7198582056"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_80D836EB54274C67913E82EB7159E7ED"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -108,6 +120,14 @@
         {
             "LaunchCondition"
             {
+                "{A06ECF26-33A3-4562-8140-9B0E340D4F24}:_1122BB28725742879768C83633152028"
+                {
+                "Name" = "8:.NET Framework"
+                "Message" = "8:[VSDNETMSG]"
+                "FrameworkVersion" = "8:.NETFramework,Version=v4.7.2"
+                "AllowLaterVersions" = "11:FALSE"
+                "InstallUrl" = "8:http://go.microsoft.com/fwlink/?LinkId=863262"
+                }
                 "{A06ECF26-33A3-4562-8140-9B0E340D4F24}:_60D4EA3D9C014EDCAF433E4A0BB4BFE3"
                 {
                 "Name" = "8:.NET Core"
@@ -157,7 +177,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:TaskbarTweet"
         "ProductCode" = "8:{EEF3A057-A783-45DF-B043-020361992B33}"
-        "PackageCode" = "8:{B6A6CBCA-3D8A-42AF-8677-E347F786AA36}"
+        "PackageCode" = "8:{1A216D4E-C222-4958-BC1D-14DA3A1777A4}"
         "UpgradeCode" = "8:{32ECF9B2-CEFE-44F6-84E4-57CDF6466913}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -676,6 +696,64 @@
         }
         "ProjectOutput"
         {
+            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_30E98C5B5184470CBEDA5905847C4370"
+            {
+            "SourcePath" = "8:..\\CustomAction\\obj\\Release\\netcoreapp3.1\\CustomAction.exe"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_B7C1362B98ED48D597E8BB50C3BF6510"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            "ProjectOutputGroupRegister" = "3:1"
+            "OutputConfiguration" = "8:"
+            "OutputGroupCanonicalName" = "8:PublishItems"
+            "OutputProjectGuid" = "8:{990C6C7F-8E66-451C-A2EF-4F3AF495720D}"
+            "ShowKeyOutput" = "11:TRUE"
+            "PublishProfilePath" = "8:Properties\\PublishProfiles\\FolderProfile.pubxml"
+                "ExcludeFilters"
+                {
+                }
+            }
+            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_332B1B92112140C59DF79B7198582056"
+            {
+            "SourcePath" = "8:..\\Pusher\\bin\\Release\\netcoreapp3.1\\publish\\Pusher.exe"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_B7C1362B98ED48D597E8BB50C3BF6510"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            "ProjectOutputGroupRegister" = "3:1"
+            "OutputConfiguration" = "8:"
+            "OutputGroupCanonicalName" = "8:PublishItems"
+            "OutputProjectGuid" = "8:{DA4F9F84-DB66-4DE6-BF91-9CEBF978029F}"
+            "ShowKeyOutput" = "11:TRUE"
+            "PublishProfilePath" = "8:Properties\\PublishProfiles\\FolderProfile.pubxml"
+                "ExcludeFilters"
+                {
+                }
+            }
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_80D836EB54274C67913E82EB7159E7ED"
             {
             "SourcePath" = "8:..\\TaskbarTweet\\bin\\x64\\Release\\TaskbarTweet.dll"
