@@ -132,6 +132,7 @@ namespace Setup
 
         private void SaveIni()
         {
+            Directory.CreateDirectory(Path.GetDirectoryName(iniPath));
             IniFile.Write(iniPath, "ConsumerKey", ApiKey, "account");
             IniFile.Write(iniPath, "ConsumerSecret", ApiSecret, "account");
             IniFile.Write(iniPath, "AccessToken", AccessToken, "account");
