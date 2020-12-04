@@ -1,6 +1,7 @@
-﻿using System;
-using System.Threading.Tasks;
-using System.Threading;
+﻿using System.Diagnostics;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using System.Linq;
 
 namespace Pusher
 {
@@ -8,10 +9,17 @@ namespace Pusher
     {
         static void Main(string[] args)
         {
-            var server = new PipeServer(@"tweet");
-            var cts = new CancellationTokenSource();
-            Console.CancelKeyPress += (s, e) => cts.Cancel();
-            server.ReceiveConnectionAsync(cts.Token).Wait();
+            CreateHostBuilder(args).Build().Run();
+        }
+
+        public static IHostBuilder CreateHostBuilder(string[] args)
+        {
+            IHostBuilder hostBuilder = Host.CreateDefaultBuilder(args);
+
+            return hostBuilder.ConfigureServices((hostContext, services) =>
+            {
+                services.AddHostedService<ServiceWorker>();
+            });
         }
     }
 }

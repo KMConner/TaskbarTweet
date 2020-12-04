@@ -1,0 +1,44 @@
+﻿<Window x:Class="Setup.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Setup"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="200" Width="600" ResizeMode="NoResize">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadCommand}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    <Grid Margin="5">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <TextBlock FontSize="17" Grid.Row="0" Grid.ColumnSpan="2" Margin="0 0 0 10">Please enter your twitter credential</TextBlock>
+        <TextBlock Grid.Row="1" Margin="0 2 5 2">API Key:</TextBlock>
+        <TextBlock Grid.Row="2" Margin="0 2 5 2">API Key secret:</TextBlock>
+        <TextBlock Grid.Row="3" Margin="0 2 5 2">Access Token:</TextBlock>
+        <TextBlock Grid.Row="4" Margin="0 2 5 2">Access token secret:</TextBlock>
+
+        <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding ApiKey, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+        <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding ApiSecret, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+        <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding AccessToken, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+        <TextBox Grid.Row="4" Grid.Column="1" Text="{Binding AccessTokenSecret, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+        <StackPanel Grid.Row="6" Grid.Column="2" Orientation="Horizontal" Width="auto" HorizontalAlignment="Right">
+            <Button Width="50" Command="{Binding CancelCommand}">Cancel</Button>
+            <Button Margin="10 0 0 0" Width="50" Command="{Binding OkCommand}">OK</Button>
+        </StackPanel>
+    </Grid>
+</Window>
