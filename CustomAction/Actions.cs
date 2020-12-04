@@ -16,8 +16,6 @@ namespace CustomAction
             string pusherPath = Path.Join(baseDir, "Pusher.exe");
             string comPath = Path.Join(baseDir, "TaskbarTweet.dll");
             Console.WriteLine(pusherPath);
-            Process.Start("sc.exe", $"create {ServiceName} binPath=\"{pusherPath}\" start=auto").WaitForExit();
-            Process.Start("net.exe", $"start \"{ServiceName}\"").WaitForExit();
             Process.Start("regsvr32.exe", $"/s \"{comPath}\"").WaitForExit();
         }
 
@@ -26,8 +24,6 @@ namespace CustomAction
             string baseDir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
             string comPath = Path.Join(baseDir, "TaskbarTweet.dll");
 
-            Process.Start("net.exe", $"stop \"{ServiceName}\"").WaitForExit();
-            Process.Start("sc.exe", $"delete {ServiceName}").WaitForExit();
             Process.Start("regsvr32.exe", $"/s /u \"{comPath}\"").WaitForExit();
         }
     }
