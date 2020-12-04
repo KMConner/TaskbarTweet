@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System.Linq;
 
 namespace Pusher
 {
@@ -8,16 +9,12 @@ namespace Pusher
     {
         static void Main(string[] args)
         {
-            CreateHostBuilder(args, !Debugger.IsAttached).Build().Run();
+            CreateHostBuilder(args).Build().Run();
         }
 
-        public static IHostBuilder CreateHostBuilder(string[] args, bool isWindowsService)
+        public static IHostBuilder CreateHostBuilder(string[] args)
         {
             IHostBuilder hostBuilder = Host.CreateDefaultBuilder(args);
-            if (isWindowsService)
-            {
-                hostBuilder = hostBuilder.UseWindowsService();
-            }
 
             return hostBuilder.ConfigureServices((hostContext, services) =>
             {
